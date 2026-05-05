@@ -792,8 +792,8 @@ n(this, function () {
                         void 0 === e && (e = null);
                         for (var i = 0; i < t.dropMenuArray.length; i++) s.savedDropSettings[i] = s.currentDropSettings[i], s.savedDropStates[i] = s.currentDropStates[i];
                         t.refreshButton.setSpin(true), s.savedSearch = 0, s.levelDataArray = [];
-                        var r = new h.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
-                        r.method = h.H9.POST, s.urlVariables = new h.JH, s.urlVariables.action = "get_all", s.urlVariables.page = s.currentSet = s.currentPage = 1, s.urlVariables.sortby = t.sortDropMenu.value, s.urlVariables.uploaded = t.uploadDropMenu.value, s.levelSearch ? (s.savedSearch = 1, s.urlVariables.action = "search_by_name", s.urlVariables.sterm = s.levelSearch) : s.authorNameSearch ? (s.savedSearch = 2, s.urlVariables.action = "search_by_user", s.urlVariables.sterm = s.authorNameSearch) : s._favorites ? (s.savedSearch = 3, r.url = window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/user.hw"), s.urlVariables = new h.JH, s.urlVariables.action = "get_favorites", l.Z.favoriteLevelIds = []) : 0 != t.authorDropMenu.value ? (s.urlVariables.action = "get_pub_by_user", s.urlVariables.user_id = t.authorDropMenu.value) : e && m.fX.trackEvent(m.fX.LEVEL_BROWSER, m.fX.REFRESH_LEVELS, t.sortDropMenu.value + "_" + t.uploadDropMenu.value), r.data = s.urlVariables, t.statusSprite = new n.dU("loading levels... (may take long depending on your cors proxy)");
+                        var r = new h.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
+                        r.method = h.H9.POST, s.urlVariables = new h.JH, s.urlVariables.action = "get_all", s.urlVariables.page = s.currentSet = s.currentPage = 1, s.urlVariables.sortby = t.sortDropMenu.value, s.urlVariables.uploaded = t.uploadDropMenu.value, s.levelSearch ? (s.savedSearch = 1, s.urlVariables.action = "search_by_name", s.urlVariables.sterm = s.levelSearch) : s.authorNameSearch ? (s.savedSearch = 2, s.urlVariables.action = "search_by_user", s.urlVariables.sterm = s.authorNameSearch) : s._favorites ? (s.savedSearch = 3, r.url = window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/user.hw", s.urlVariables = new h.JH, s.urlVariables.action = "get_favorites", l.Z.favoriteLevelIds = []) : 0 != t.authorDropMenu.value ? (s.urlVariables.action = "get_pub_by_user", s.urlVariables.user_id = t.authorDropMenu.value) : e && m.fX.trackEvent(m.fX.LEVEL_BROWSER, m.fX.REFRESH_LEVELS, t.sortDropMenu.value + "_" + t.uploadDropMenu.value), r.data = s.urlVariables, t.statusSprite = new n.dU("loading levels... (may take long depending on your cors proxy)");
                         var o = t.statusSprite.window;
                         t.addChild(o), o.center(), t.loader = new h.yW, t.loader.addEventListener(h.ju.COMPLETE, t.levelDataLoaded), t.loader.addEventListener(h.XD.IO_ERROR, t.IOErrorHandler), t.loader.addEventListener(h.P5.SECURITY_ERROR, t.securityErrorHandler), t.loader.load(r);
                     }, t.levelDataLoaded = function (e) {
@@ -840,7 +840,7 @@ n(this, function () {
                     }, t.editFavorites = function (e) {
                         var i = e.type == w.TM.ADD_TO_FAVORITES;
                         if (l.Z.user_id <= 0) t.createPromptSprite("You must be logged in to edit your favorite levels.  Login or register for free up there on the right.", "ok"); else if (l.Z.disableUpload) t.createPromptSprite(l.Z.disableMessage, "OH FINE"); else {
-                            var s = e.extra, r = new h.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/user.hw"));
+                            var s = e.extra, r = new h.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/user.hw");
                             r.method = h.H9.POST;
                             var o = new h.JH;
                             if (o.level_id = s, r.data = o, i) {
@@ -906,7 +906,7 @@ n(this, function () {
                     -1 == i ? (s.authorValues.push(t), s.authorDisplay.push(e), s.currentDropSettings = [s.authorValues.length - 1, 0, 3], s.savedDropSettings = [s.authorValues.length - 1, 0, 3], s.currentDropStates = [1, 0, 0], s.savedDropStates = [1, 0, 0]) : (s.savedDropSettings = [i, 0, 3], s.savedDropStates = [1, 0, 0]), s.authorNameSearch = null, s.levelSearch = null, s._favorites = false, s.currentPage = 1, s.currentSet = 1, s.urlVariables = null, s.levelDataArray = null;
                 }, r.loadDataOffset = function () {
                     this.refreshButton.setSpin(true);
-                    var e = new h.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
+                    var e = new h.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
                     e.method = h.H9.POST, e.data = s.urlVariables, s.urlVariables.page = s.currentSet, this.statusSprite = new n.dU("loading levels...");
                     var t = this.statusSprite.window;
                     this.addChild(t), t.center(), "get_all" == s.urlVariables.action && m.fX.trackEvent(m.fX.LEVEL_BROWSER, m.fX.PAGE_LEVELS, this.sortDropMenu.value + "_" + this.uploadDropMenu.value, s.currentSet), this.loader = new h.yW, this.loader.addEventListener(h.ju.COMPLETE, this.levelDataLoaded), this.loader.addEventListener(h.XD.IO_ERROR, this.IOErrorHandler), this.loader.addEventListener(h.P5.SECURITY_ERROR, this.securityErrorHandler), this.loader.load(e);
@@ -1420,7 +1420,7 @@ n(this, function () {
                 }, r.formatTextFields = function () {
                     this.authorText && (this.authorSprite = new h.jy, this.authorSprite.x = this.authorText.x, this.authorSprite.y = this.authorText.y, this.authorSprite.x = 0, this.authorSprite.y = 0, this.authorSprite.addChild(this.authorText), this.addChild(this.authorSprite), this.authorSprite.mouseChildren = false, this.authorSprite.buttonMode = true, this.nameText.selectable = this.authorText.selectable = this.charText.selectable = this.commentsText.selectable = this.voteText.selectable = this.playText.selectable = false, this.nameText.embedFonts = this.authorText.embedFonts = this.charText.embedFonts = this.commentsText.embedFonts = this.voteText.embedFonts = this.playText.embedFonts = true, this.nameText.autoSize = this.authorText.autoSize = this.charText.autoSize = this.commentsText.autoSize = this.voteText.autoSize = this.playText.autoSize = h.ie.LEFT, this.nameText.wordWrap = this.authorText.wordWrap = this.charText.wordWrap = this.voteText.wordWrap = this.playText.wordWrap = false, this.commentsText.wordWrap = true, this.commentsText.mouseEnabled = false, this.commentMask = new h.jy, this.commentMask.graphics.beginFill(16777215, .1), this.commentMask.graphics.drawRect(0, 0, this.commentsBg.width, this.commentsBg.height), this.commentMask.graphics.endFill(), this.commentMask.x = this.commentsBg.x, this.commentMask.y = this.commentsBg.y, this.addChild(this.commentMask), this.commentsText.mask = this.commentMask);
                 }, r.loadFeaturedData = function () {
-                    var e = new h.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
+                    var e = new h.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
                     e.method = h.H9.POST;
                     var t = new h.JH;
                     t.action = "get_featured", e.data = t, this.loader = new h.yW, this.addLoaderListeners(), this.loader.load(e);
@@ -2046,7 +2046,7 @@ n(this, function () {
                         void 0 === e && (e = null);
                         for (var t = 0; t < i.dropMenuArray.length; t++) s.savedDropSettings[t] = s.currentDropSettings[t];
                         i.refreshButton.setSpin(true), s.replayDataArray = [];
-                        var r = new h.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/replay.hw"));
+                        var r = new h.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/replay.hw");
                         r.method = h.H9.POST, s.urlVariables = new h.JH, s.urlVariables.action = "get_all_by_level", s.urlVariables.page = s.currentSet = s.currentPage = 1, s.urlVariables.level_id = s._levelId, s.urlVariables.sortby = i.sortDropMenu.value, r.data = s.urlVariables, e && m.fX.trackEvent(m.fX.REPLAY_BROWSER, m.fX.REFRESH_REPLAYS, i.sortDropMenu.value), i.statusSprite = new n.dU("loading replays...");
                         var o = i.statusSprite.window;
                         i.addChild(o), o.center(), i.loader = new h.yW, i.loader.addEventListener(h.ju.COMPLETE, i.replayDataLoaded), i.loader.addEventListener(h.XD.IO_ERROR, i.IOErrorHandler), i.loader.addEventListener(h.P5.SECURITY_ERROR, i.securityErrorHandler), i.loader.load(r);
@@ -2142,7 +2142,7 @@ n(this, function () {
                     s.replayDataArray = null, s.urlVariables = null;
                 }, r.loadDataOffset = function () {
                     this.refreshButton.setSpin(true);
-                    var e = new h.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/replay.hw"));
+                    var e = new h.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/replay.hw");
                     e.method = h.H9.POST, e.data = s.urlVariables, s.urlVariables.page = s.currentSet, this.statusSprite = new n.dU("loading replays...");
                     var t = this.statusSprite.window;
                     this.addChild(t), t.center(), m.fX.trackEvent(m.fX.REPLAY_BROWSER, m.fX.PAGE_REPLAYS, this.sortDropMenu.value, s.currentSet), this.loader = new h.yW, this.loader.addEventListener(h.ju.COMPLETE, this.replayDataLoaded), this.loader.addEventListener(h.XD.IO_ERROR, this.IOErrorHandler), this.loader.addEventListener(h.P5.SECURITY_ERROR, this.securityErrorHandler), this.loader.load(e);
@@ -11346,7 +11346,7 @@ n(this, function () {
                     var t;
                     return (t = e.call(this) || this).loadLevels = function (e) {
                         void 0 === e && (e = null), t.clearList(), t.refreshButton.removeEventListener(p.TF.MOUSE_UP, t.loadLevels);
-                        var i = new p.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
+                        var i = new p.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
                         i.method = p.H9.POST;
                         var s = new p.JH;
                         s.action = "get_cmb_by_user", i.data = s, t.loader = new p.yW, t.addLoaderListeners(), t.loader.load(i), t.addEventListener(p.ju.ENTER_FRAME, t.spin, false, 0, true);
@@ -11702,12 +11702,12 @@ n(this, function () {
                         this.statusSprite = new w("Saving New Level...<br><br>(just in case this fails, levels are now autosaved locally)");
                         var i = this.statusSprite.window;
                         this.canvas.parent.parent.addChild(i), i.center(), this._lastSavedData = new O.b(null, e, null, null, null, null, null, null, t, null, null, null, null, null);
-                        var s = new p.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/set_level.hw"));
+                        var s = new p.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/set_level.hw");
                         s.method = p.H9.POST;
                         var r = new p.JH;
                         r.action = "create", r.level_name = e, r.user_comment = t, r.playable_character = this.canvas.startPlaceHolder.forceChar ? this.canvas.startPlaceHolder.characterIndex : 0, this.levelXML = this.createXML(), T.Z.sharedObject.data.editorLevelData = this.levelXML.toXMLString();
                         var o = this.levelXML.toCompactXMLString(), n = $.sA.encryptBytes(o, "eatshit" + T.Z.user_id), a = $.dr.encodeByteArray(n);
-                        r.level_record = encodeURIComponent(a), s.data = r;
+                        r.level_record = a, s.data = r;
                         var h = new p.yW;
                         h.addEventListener(p.ju.COMPLETE, this.levelSaved), h.addEventListener(p.XD.IO_ERROR, this.IOErrorHandler), h.load(s);
                     }
@@ -11716,12 +11716,12 @@ n(this, function () {
                         this.statusSprite = new w("Saving Over Level...<br><br>(just in case this fails, levels are now autosaved locally)");
                         var s = this.statusSprite.window;
                         this.canvas.parent.parent.addChild(s), s.center(), this._lastSavedData = new O.b(e, t, null, null, null, null, null, null, i, null, null, null, null, null);
-                        var r = new p.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/set_level.hw"));
+                        var r = new p.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/set_level.hw");
                         r.method = p.H9.POST;
                         var o = new p.JH;
                         o.action = "update", o.level_id = e, o.level_name = t, o.user_comment = i, o.playable_character = this.canvas.startPlaceHolder.forceChar ? this.canvas.startPlaceHolder.characterIndex : 0, this.levelXML = this.createXML(), T.Z.sharedObject.data.editorLevelData = this.levelXML.toXMLString();
                         var n = this.levelXML.toXMLString(), a = $.sA.encryptBytes(n, "eatshit" + T.Z.user_id), h = $.dr.encodeByteArray(a);
-                        o.level_record = encodeURIComponent(h), r.data = o;
+                        o.level_record = h, r.data = o;
                         var l = new p.yW;
                         l.addEventListener(p.ju.COMPLETE, this.levelOverWritten), l.addEventListener(p.XD.IO_ERROR, this.IOErrorHandler), l.load(r);
                     }
@@ -11729,7 +11729,7 @@ n(this, function () {
                     this.statusSprite = new w("Publishing Level...");
                     var t = this.statusSprite.window;
                     this.canvas.parent.parent.addChild(t), t.center();
-                    var i = new p.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/set_level.hw"));
+                    var i = new p.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/set_level.hw");
                     i.method = p.H9.POST;
                     var s = new p.JH;
                     s.action = "publish", s.level_id = e, i.data = s;
@@ -11743,7 +11743,7 @@ n(this, function () {
                     void 0 === t && (t = -1), this.statusSprite = new w("Loading Level...");
                     var i = this.statusSprite.window;
                     this.canvas.parent.parent.addChild(i), i.center();
-                    var s = new p.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
+                    var s = new p.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
                     s.method = p.H9.POST;
                     var r = new p.JH;
                     r.level_id = e, r.action = "get_record", r.ip_tracking = q.L.randomNumString(4, 8, false), s.data = r, this.importAuthorId = t;
@@ -11753,7 +11753,7 @@ n(this, function () {
                     this.statusSprite = new w("Deleting Level...");
                     var i = this.statusSprite.window;
                     this.canvas.parent.parent.addChild(i), i.center();
-                    var s = new p.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/set_level.hw"));
+                    var s = new p.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/set_level.hw");
                     s.method = p.H9.POST;
                     var r = new p.JH;
                     r.action = t ? "del_level" : "del_priv_level", r.level_id = e, s.data = r;
@@ -16209,7 +16209,7 @@ n(this, function () {
                 }, n.loadXML = function () {
                     this._levelXML = new c.hH(window.xml), this.dispatchEvent(new c.ju(c.ju.COMPLETE));
                 }, n.loadData = function () {
-                    var e = new c.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
+                    var e = new c.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
                     e.method = c.H9.POST;
                     var t = new c.JH;
                     t.level_id = this.levelId, t.action = "get_record", t.ip_tracking = v.LC.randomNumString(4, 8, this.incrementPlays), e.data = t;
@@ -16533,7 +16533,7 @@ n(this, function () {
                     }, r.replayId = t, r;
                 }
                 return i = e, (t = o).prototype = Object.create(i.prototype), t.prototype.constructor = t, B(t, i), o.prototype.loadData = function () {
-                    var e = new c.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/replay.hw"));
+                    var e = new c.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/replay.hw");
                     e.method = c.H9.POST;
                     var t = new c.JH;
                     t.replay_id = this.replayId, t.level_id = this.levelId, t.action = "get_cmb_records", e.data = t;
@@ -17137,10 +17137,10 @@ n(this, function () {
                     this._window.parent.addChild(e), e.center();
                     var t = this.createReplayQueryString(this._levelId, this._character, g.Z.architecture, this._completed ? this._length : g.Z.maxReplayFrames, g.Z.CURRENT_VERSION, this.commentsText.temp.text), i = new Y(this.APPLESAUCE), s = i.encrypt(t), r = i.getIV(), o = new d.SK;
                     o.writeBytes(this._byteArray);
-                    var n = d.dr.encodeByteArray(o), a = window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/replay.hw"), h = new c.RW(a);
+                    var n = d.dr.encodeByteArray(o), a = window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/replay.hw", h = new c.RW(a);
                     h.method = c.H9.POST;
                     var l = new c.JH;
-                    l.action = "create", l.rr = encodeURIComponent(n), l.em = encodeURIComponent(s), l.ei = encodeURIComponent(r), h.data = l, this.loader = new c.yW, this.loader.addEventListener(c.ju.COMPLETE, this.replaySaved), this.loader.load(h);
+                    l.action = "create", l.rr = n, l.em = s, l.ei = r, h.data = l, this.loader = new c.yW, this.loader.addEventListener(c.ju.COMPLETE, this.replaySaved), this.loader.load(h);
                 }, n.buildWindow = function () {
                     this._window = new y.Rz(true, this, true), this._window.addEventListener(y.Rz.WINDOW_CLOSED, this.windowClosed);
                 }, n.die = function () {
@@ -17307,7 +17307,7 @@ n(this, function () {
                     }, r.keyDownHandler = function (e) {
                         r._disableKeys || 82 !== e.keyCode || r.dispatchEvent(new c.ju(s.RESTART_LEVEL));
                     }, r.editFavorites = function () {
-                        var e = new c.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/user.hw"));
+                        var e = new c.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/user.hw");
                         e.method = c.H9.POST;
                         var t = new c.JH;
                         if (t.level_id = r.levelDataObject.id, e.data = t, r.isFavorite) i = "removing level from favorites...", t.action = "delete_favorite"; else {
@@ -17341,7 +17341,7 @@ n(this, function () {
                         r.statusSprite = new y.dU("casting your vote...");
                         var i = r.statusSprite.window;
                         r._window.parent.addChild(i), i.center();
-                        var s = new c.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/set_level.hw"));
+                        var s = new c.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/set_level.hw");
                         s.method = c.H9.POST;
                         var o = new c.JH;
                         o.level_id = r.levelDataObject.id, o.rating = r.votingStars.rating, o.action = "rate_level", s.data = o;
@@ -17438,7 +17438,7 @@ n(this, function () {
                         i.statusSprite = new y.dU("casting your vote...");
                         var t = i.statusSprite.window;
                         i._window.parent.addChild(t), t.center();
-                        var s = new c.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/replay.hw"));
+                        var s = new c.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/replay.hw");
                         s.method = c.H9.POST;
                         var r = new c.JH;
                         r.replay_id = i.replayDataObject.id, r.rating = i.votingStars.rating, r.action = "rate_replay", s.data = r;
@@ -18085,7 +18085,7 @@ n(this, function () {
                 i = e, (t = h).prototype = Object.create(i.prototype), t.prototype.constructor = t, a(t, i);
                 var l, c, d = h.prototype;
                 return d.load = function (e) {
-                    var t = new s.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/get_level.hw"));
+                    var t = new s.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/get_level.hw");
                     t.method = s.H9.POST;
                     var i = new s.JH;
                     i.level_id = e, i.action = "get_level", t.data = i, this.loader = new s.yW, this.loader.addEventListener(s.ju.COMPLETE, this.levelDataLoaded), this.loader.addEventListener(s.XD.IO_ERROR, this.IOErrorHandler), this.loader.addEventListener(s.P5.SECURITY_ERROR, this.securityErrorHandler), this.loader.load(t);
@@ -18179,7 +18179,7 @@ n(this, function () {
                 i = e, (t = l).prototype = Object.create(i.prototype), t.prototype.constructor = t, h(t, i);
                 var c, d, p = l.prototype;
                 return p.load = function (e) {
-                    var t = new s.RW(window.HW_SETTINGS.corsProxy + encodeURIComponent("https://totaljerkface.com/replay.hw"));
+                    var t = new s.RW(window.HW_SETTINGS.corsProxy + "https://totaljerkface.com/replay.hw");
                     t.method = s.H9.POST;
                     var i = new s.JH;
                     i.replay_id = e, i.action = "get_combined", t.data = i, this.loader = new s.yW, this.loader.addEventListener(s.ju.COMPLETE, this.replayDataLoaded), this.loader.addEventListener(s.XD.IO_ERROR, this.IOErrorHandler), this.loader.addEventListener(s.P5.SECURITY_ERROR, this.securityErrorHandler), this.loader.load(t);
